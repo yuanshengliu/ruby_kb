@@ -1,0 +1,16 @@
+<div id="headerwrap">
+	<div id="header">
+		<h1>Ruby on Rails Articles</h1>
+
+		<%= link_to "Home", root_path %>
+
+		<% if user_signed_in? %>
+
+			<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+		<% else %>
+			<%= link_to "Sing in", new_user_session_path %>
+			Or
+			<%= link_to "Sign up", new_user_registration_path %>
+		<% end %>
+	</div>
+</div>

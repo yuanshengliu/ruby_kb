@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :find_topic, only: [:show, :edit, :update, :destroy]
+
   # GET /topics
   # GET /topics.json
   def index
@@ -82,4 +85,11 @@ class TopicsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def find_topic
+    @topic = Topic.find(params[:topic_id] || params[:id])
+  end
+
 end

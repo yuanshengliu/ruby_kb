@@ -1,6 +1,9 @@
-class FeedbacksController < ApplicationController
+class FeedbacksController < ArticlesController
   # GET /feedbacks
   # GET /feedbacks.json
+
+  before_filter :find_article
+
   def index
     @feedbacks = Feedback.all
 
@@ -42,13 +45,15 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(params[:feedback])
 
+    @feedback.article = @article
+
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
-        format.json { render json: @feedback, status: :created, location: @feedback }
+        format.html { redirect_to @article, notice: 'Feedback was successfully created.' }
+        format.json { render json: @article, status: :created, location: @feedback }
       else
         format.html { render action: "new" }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+        format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end

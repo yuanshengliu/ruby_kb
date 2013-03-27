@@ -1,0 +1,25 @@
+<div id="sidebar">
+<p>&nbsp;</p>
+<h2>Topics</h2>
+<ul>
+
+<% @topics.each do |topic| %>
+	<li><%= link_to topic.name, topic_path(topic) %></li>
+<% end %>
+
+</ul>
+</div>
+
+
+
+<div id="content">
+	<p style="text-align: right"><span class="link"><br><a href="/">back</a></span></p>
+
+	<h2>Recent Articles</h2>		
+	<p>......</p>
+
+	<% @recentArticles.each do |article| %>
+		<li><%= link_to article.title, article_path(article) %></li>
+	<% end %>
+
+</div>

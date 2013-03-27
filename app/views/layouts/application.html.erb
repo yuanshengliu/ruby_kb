@@ -5,11 +5,32 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <%= javascript_include_tag 'nicEdit' -%>
+  
 </head>
 <body>
 
+<%= render "/layouts/shared/header_bar" %>
 
-<%= yield %>
+<div id="middlewrap">
+<div id="middle">
+	<%= yield %>
+</div>
+</div>
+
+<% if notice || alert %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<% end %>
+
+
+<div id="footerwrap">
+<div id="footer">
+<p>Ruby on Rails For Starters Workshop</p>
+<p>&copy; Workshop  2013</p>
+</div>
+</div>
 
 </body>
 </html>

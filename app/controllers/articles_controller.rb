@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
+  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :find_article, only: [:show, :edit, :update, :destroy]
+
   def index
     @articles = Article.all
 
@@ -15,6 +18,8 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
 
+    @feedback = Feedback.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }
@@ -41,6 +46,9 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
+
+    @article.user = current_user
+
 
     respond_to do |format|
       if @article.save
@@ -79,5 +87,11 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def find_article
+    @article = Article.find(params[:article_id] || params[:id])
   end
 end

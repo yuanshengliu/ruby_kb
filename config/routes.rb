@@ -1,6 +1,8 @@
 RubyKb::Application.routes.draw do
-  resources :feedbacks
 
+  devise_for :users
+
+  get "home/index"
 
   resources :users
 
@@ -10,6 +12,15 @@ RubyKb::Application.routes.draw do
 
   resources :topics
 
+  resources :topics, only: [:show, :edit] do
+    resources :articles
+  end
+
+  resources :articles,  only: [:show] do
+    resources :feedbacks
+  end
+
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
