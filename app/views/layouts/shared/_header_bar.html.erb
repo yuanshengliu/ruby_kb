@@ -6,7 +6,7 @@
 			<div class="nav-collapse collapse" id="main-menu">
 				<ul class="nav">
 					<li>
-						<%= link_to "Home", root_path %> &nbsp;
+						<%= link_to "Home", root_path %>
 					</li>
 					<% if user_signed_in? %>
 						<li>
@@ -14,7 +14,7 @@
 						</li>
 					<% end %>					
 					<li>
-						<%= link_to "Post an Article", new_article_path %> &nbsp;
+						<%= link_to "Post an Article", new_article_path %>
 					</li>					
 				</ul>
 				<form class="navbar-search pull-left" action="">
@@ -30,7 +30,7 @@
 						</li>						
 					<% else %>
 						<li> 
-							<%= link_to "Sing in", new_user_session_path %>
+							<%= link_to "Sign in", new_user_session_path %>
 						</li>
 						<li> 
 							<%= link_to "Sign up", new_user_registration_path %>

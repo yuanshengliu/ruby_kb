@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ruby Knowledget Base</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<meta charset="utf-8">
+	<meta name="description" content="Ruby on Rails topics and articles.">
+	<meta name="author" content="Lewis Liu">
 
-  <%= javascript_include_tag 'nicEdit' -%>
-  
+	<title>Ruby on Rails Knowledge</title>
+
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+
+	<%= javascript_include_tag 'nicEdit' -%>  
 </head>
-<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="80" style="margin-top: 36px;">
+
+<body class="preview" id="top" data-spy="scroll" data-target=".subnav" data-offset="40">
 	<%= render "/layouts/shared/header_bar" %>
 
 	<div class="container">
 		<div id="middle">
 			<%= yield %>
 		</div>
-
-		<% if notice || alert %>
-			<p class="notice"><%= notice %></p>
-			<p class="alert"><%= alert %></p>
+		
+		<% if notice %>
+			<div class="alert alert-success"><%= notice %></div>
 		<% end %>
-
-		<hr>
+		
+		<% if alert %>
+			<div class="alert alert-info"><%= alert %></div>
+		<% end %>
+					
 		<%= render "/layouts/shared/footer" %>
 	</div>
 </body>
