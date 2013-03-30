@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index, :search]
   before_filter :find_article, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -17,6 +17,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
+
+    @topics = Topic.all()
 
     @feedback = Feedback.new
     
@@ -53,13 +55,31 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
 
-        QuestionsMailer.comment_notfication(current_user, @article).deliver
+        #QuestionsMailer.comment_notfication(current_user, @article).deliver
+        QuestionsMailer.delay.comment_notfication(current_user, @article)
 
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /articles/search
+  def search
+    if (params[:search].length>0)
+      searchParam = "%" + params[:search] + "%"
+      @exception = ""
+      begin
+        @articles = Article.where("title like ? or content like ?", searchParam, searchParam)
+      rescue StandardError=>e
+        @exception = e
+      end
+
+      respond_to do |format|
+        format.js
       end
     end
   end

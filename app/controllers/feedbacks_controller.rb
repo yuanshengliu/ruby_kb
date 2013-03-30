@@ -4,25 +4,6 @@ class FeedbacksController < ArticlesController
 
   before_filter :find_article
 
-  def index
-    @feedbacks = Feedback.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @feedbacks }
-    end
-  end
-
-  # GET /feedbacks/1
-  # GET /feedbacks/1.json
-  def show
-    @feedback = Feedback.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @feedback }
-    end
-  end
 
   # GET /feedbacks/new
   # GET /feedbacks/new.json
@@ -49,8 +30,9 @@ class FeedbacksController < ArticlesController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @article, notice: 'Feedback was successfully created.' }
-        format.json { render json: @article, status: :created, location: @feedback }
+        #format.html { redirect_to @article, notice: 'Feedback was successfully created.' }
+        #format.json { render json: @article, status: :created, location: @feedback }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @article.errors, status: :unprocessable_entity }

@@ -2,19 +2,9 @@
 
 <div class="row">
 
-    <div class="span4">
-    	<h3>Topics</h3>	
-		<div class="well" style="padding: 8px 0;">
-        	<ul class="nav nav-list">
-        		<li class="active"><a href="/">All</a></li>
-				<% @topics.each do |topic| %>
-					<li><%= link_to topic.name, topic_path(topic) %></li>
-				<% end %>
-			</ul>      	
-      	</div>
-    </div>
+	<%= render :partial => "/layouts/shared/left_panel_topic", :object => @topics %>
 
-	<div class="span4" id="content">
+	<div class="span8" id="content"> 
 		<h3>Recent Articles</h3>	
 		<section id="recentArticles">
 		  <table class="table table-bordered table-striped table-hover">

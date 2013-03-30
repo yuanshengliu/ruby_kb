@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
-  before_filter :find_topic, only: [:show, :edit, :update, :destroy]
+  before_filter :find_topic, only: [:show, :edit, :update, :destroy, :query]
 
   # GET /topics
   # GET /topics.json
@@ -24,6 +24,7 @@ class TopicsController < ApplicationController
     end
   end
 
+
   # GET /topics/new
   # GET /topics/new.json
   def new
@@ -38,6 +39,18 @@ class TopicsController < ApplicationController
   # GET /topics/1/edit
   def edit
     @topic = Topic.find(params[:id])
+  end
+
+  # GET /topics/1/query
+  def query
+    @articles = Article.where("topic_id = ?", @topic.id )
+    @topic.articles = @articles
+
+    respond_to do |format|
+      #format.html # show.html.erb
+      #format.json { render json: @topic }
+      format.js
+    end
   end
 
   # POST /topics

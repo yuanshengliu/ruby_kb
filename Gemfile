@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.12'
 
+# SASS
+gem 'quiet_assets', group: :development
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -35,6 +38,7 @@ gem 'bootswatch-rails'
 
 gem 'faker'
 
+gem 'delayed_job_active_record'
 
 
 # To use ActiveModel has_secure_password

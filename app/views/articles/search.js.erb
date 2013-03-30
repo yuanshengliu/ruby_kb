@@ -1,0 +1,5 @@
+<% if @exception.empty? %>
+  $("#content").html("<%= j(render :partial => '/articles/search', :object => @articles) %>");
+<% else %>
+  alert("there was errors with your search.");
+<% end %>

@@ -12,6 +12,18 @@ RubyKb::Application.routes.draw do
 
   resources :topics
 
+  resources :topics do
+    member do
+      get 'query'
+    end
+  end
+
+  resources :articles do
+    collection do
+      post 'search'
+    end
+  end
+  
   resources :topics, only: [:show, :edit] do
     resources :articles
   end

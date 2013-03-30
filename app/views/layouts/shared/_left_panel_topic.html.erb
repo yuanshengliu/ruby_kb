@@ -1,0 +1,13 @@
+
+<div class="span3">
+	<h3>Topics</h3>	
+	<div class="well" style="padding: 4px 0;">
+    	<ul class="nav nav-list">
+    		<li class="active"><a href="/">All</a></li>
+			<% @topics.each do |topic| %>
+				<li><%= link_to topic.name, query_topic_path(topic), remote: true %></li>
+			<% end %>
+		</ul>      	
+  	</div>
+</div>
+
