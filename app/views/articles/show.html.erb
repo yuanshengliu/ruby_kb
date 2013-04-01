@@ -1,9 +1,9 @@
 
 <div class="row">
 
-	<%= render :partial => "/layouts/shared/left_panel_topic", :object => @topics %>
+	<%= render :partial => "/layouts/shared/left_panel_topic", :object => @topics,:locals => {:selectTopicId => @article.topic_id} %>
 
-	<div class="span8" id="content">
+	<div class="span9" id="content">
 
 	  <h1><%= @article.title %></h1>
 
@@ -12,7 +12,7 @@
 				<span class="pull-right"><%= link_to 'Edit', edit_article_path(@article) %> </span>
 			<% end %>
 		</p>
-		<p> By: <b><%= current_user.email %></b> </p>
+		<p> By: <b><%= current_user.name %></b> </p>
 
 		<p>
 		  <%= @article.content.html_safe %>

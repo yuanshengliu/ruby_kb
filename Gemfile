@@ -15,6 +15,7 @@ group :test, :development do
 	gem "rspec-rails", "~>2.8"
 end
 
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +25,10 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
+  
+  gem "twitter-bootstrap-rails"
+
+  gem 'jquery-datatables-rails', '>= 1.0.1'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -39,6 +44,8 @@ gem 'bootswatch-rails'
 gem 'faker'
 
 gem 'delayed_job_active_record'
+
+gem 'will_paginate'
 
 
 # To use ActiveModel has_secure_password

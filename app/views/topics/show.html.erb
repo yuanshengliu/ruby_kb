@@ -1,25 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<%= render :partial => "/layouts/shared/left_panel_topic", :object => @topics, :locals => {:selectTopicId => @topic.id} %>
 
-<p>
-  <b>Name:</b>
-  <%= @topic.name %>
-</p>
+	<div class="span9" id="content"> 
 
-<p>
-  <b>Description:</b>
-  <%= @topic.description %>
-</p>
+		<p>
+		  <b>Name:</b>
+		  <%= @topic.name %>
+		</p>
 
-<h2>Articles</h2>
+		<p>
+		  <b>Description:</b>
+		  <%= @topic.description %>
+		</p>
 
-<% @topic.articles.each do |article| %>
-	<%= link_to article.title, article_path(article) %> <br>
+		<h3>Articles</h3>	
+		<section id="articleSection">
+		<%= render :partial => "/articles/article", :locals => {:searchArticles => @topic.articles.all} %>
+		</section>
+	</div>
+</div>
 
-	<%= link_to "Edit", edit_article_path(article) %> |
-	<%= link_to "Delete".html_safe, article_path(article), method: :delete, confirm: "Are you sure you want to delete this article?", class: "btn" %>
-<% end %>
 
-<br>
-<br>
-<%= link_to 'Edit Topic', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
